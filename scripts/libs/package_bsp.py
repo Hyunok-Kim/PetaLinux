@@ -151,6 +151,8 @@ def PackageBsp(args, proot):
             for Dir in ProjectEssentials.split():
                 act_file = os.path.join(proj, Dir)
                 if os.path.exists(act_file):
+                    if os.path.basename(act_file) == "components":
+                        continue
                     logger.info('   Copying %s' % act_file)
                     rsync_cmd = 'rsync -a --exclude-from="%s" "%s" "%s/"' % (
                         ExcludeFile, act_file, TmpProjDir)
